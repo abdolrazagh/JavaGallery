@@ -16,7 +16,16 @@
     <jsp:include page="header.jsp"></jsp:include>
 
 <main>
+<div class="container" >
+    <div class="jumbotron mt-5">
+        <label for="cat">Category</label>
+        <select class="form-control" name="category" id="cat">
+            <option>Winter</option>
+            <option>Summer</option>
 
+        </select>
+    </div>
+</div>
 </main>
 </body>
 </html>

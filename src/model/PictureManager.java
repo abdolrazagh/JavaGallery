@@ -1,0 +1,19 @@
+package model;
+
+import java.util.ArrayList;
+
+public class PictureManager {
+
+    public boolean savePicture(Picture pic){
+        PictureDA pictureDA =new PictureDA();
+        return pictureDA.insertPicture(pic);
+    }
+    public Picture loadPictureById(int pic_id ){
+        PictureDA pictureDA =new PictureDA();
+        return pictureDA.selectPictureById(pic_id);
+    }
+    public ArrayList<Picture> loadPictureByCatId(int cat_id){
+        PictureDA pictureDA = new PictureDA();
+        return pictureDA.selectPictureByCatId(cat_id);
+    }
+}
