@@ -20,7 +20,7 @@ public class DataBase {
             return true;
         }
         Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javagallery","root","13708");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javagallery","root","123@abc");
         return true;
     }
 

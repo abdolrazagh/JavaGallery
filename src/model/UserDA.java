@@ -17,7 +17,7 @@ public class UserDA {
             stmt.setInt(1,id);
             ResultSet result = stmt.executeQuery();
             while (result.next()){
-                User user = new User();
+                User user = new User(name, family, password, username, sq1, sq2, ans1, ans2, role);
                 user.setId(result.getInt("USER_ID"));
                 user.setUsername(result.getString("USRNAME"));
                 user.setPassword(result.getString("PASSWORD"));
