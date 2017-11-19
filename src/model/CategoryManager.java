@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class CategoryManager {
-    public ArrayList<Category> loadAllCategories(){
+    public static ArrayList<Category> loadAllCategories(){
         CategoryDA categoryDA = new CategoryDA();
         return categoryDA.selectAllCategories();
     }
@@ -11,4 +11,6 @@ public class CategoryManager {
         CategoryDA categoryDA = new CategoryDA();
         return categoryDA.selectCategoryById(id);
     }
+
+
 }

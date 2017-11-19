@@ -1,4 +1,6 @@
-<%--
+<%@ page import="model.Category" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.CategoryManager" %><%--
   Created by IntelliJ IDEA.
   User: mabdo
   Date: 11/18/2017
@@ -16,16 +18,34 @@
     <jsp:include page="header.jsp"></jsp:include>
 
 <main>
-<div class="container" >
-    <div class="jumbotron mt-5">
-        <label for="cat">Category</label>
-        <select class="form-control" name="category" id="cat">
-            <option>Winter</option>
-            <option>Summer</option>
+    <div class="container">
+        <div class="jumbotron mt-5">
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="cat">Category</label>
+                    <%
+                        ArrayList<Category> categories = CategoryManager.loadAllCategories();
+                    %>
+                    <select class="form-control" name="category" id="cat">
+                        <%
+                            for (Category cat : categories) {
+                        %>
+                        <option><%=cat.getName()%>
+                        </option>
+                        <%
+                            }
+                        %>
 
-        </select>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="file">Select Picture</label>
+                    <input class="form-control-file" type="file" name="file" id="file">
+                </div>
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+        </div>
     </div>
-</div>
 </main>
 </body>
 </html>
