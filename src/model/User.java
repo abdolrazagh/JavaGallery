@@ -13,11 +13,11 @@ public class User {
     private int sq2;
     private String ans2;
 
-    public User(String name, String family, String password, String username, String sq1, String sq2, String ans1, String ans2, String role) {
+    public User() {
 
     }
 
-    public User( String username, String password, String name, String family, String role, int sq1, String ans1, int sq2, String ans2) {
+    public User( String username, String password, String name, String family, int sq1, String ans1, int sq2, String ans2, String role) {
 
         this.username = username;
         this.password = password;

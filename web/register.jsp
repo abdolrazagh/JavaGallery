@@ -1,4 +1,6 @@
-<%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.SequrityQuestion" %>
+<%@ page import="model.SequrityQuestionManager" %><%--
   Created by IntelliJ IDEA.
   User: mabdo
   Date: 11/18/2017
@@ -13,38 +15,50 @@
 
 </head>
 <body>
-<form name="form" action="RegisterServlet" method="post">
 <jsp:include page="header.jsp"></jsp:include>
-<table>
-    <tr>
-        <td>NAME</td>
-        <td><input type="text" name="name"></td>
-    </tr>
-</table>
-<table>
-    <tr>
-        <td>FAMILY</td>
-        <td><input type="text" name="family"></td>
-    </tr>
-</table>
-<table>
-    <tr>
-        <td>USERNAME</td>
-        <td><input type="text" name="username"></td>
-    </tr>
-</table>
-<table>
-    <tr>
-        <td>PASSWORD</td>
-        <td><input type="text" name="password"></td>
-    </tr>
-</table>
+<form name="form" action="/Register" method="post">
 
     <table>
-    <tr>
+        <tr>
+            <td>NAME</td>
+            <td><input type="text" name="name"></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>FAMILY</td>
+            <td><input type="text" name="family"></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>USERNAME</td>
+            <td><input type="text" name="username"></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>PASSWORD</td>
+            <td><input type="text" name="password"></td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
             <td>QUESTION1</td>
-        <td><input type="text" name="sq1"></td>
-    </tr>
+            <td>
+                <select name="sq1" >
+                <%
+                    ArrayList<SequrityQuestion> sqs = SequrityQuestionManager.loadAllQuestions();
+                    for (SequrityQuestion sq : sqs){
+                %>
+                    <option value="<%=sq.getId()%>"><%=sq.getQuestion()%></option>
+                <%
+                    }
+                %>
+                </select>
+            </td>
+        </tr>
     </table>
     <table>
         <tr>
@@ -55,9 +69,20 @@
 
     <table>
         <tr>
-        <td>QUESTION2</td>
+            <td>QUESTION2</td>
 
-        <td><input type="text" name="sq2"></td>
+            <td>
+                <select name="sq2" >
+                    <%
+                        ArrayList<SequrityQuestion> sqs2 = SequrityQuestionManager.loadAllQuestions();
+                        for (SequrityQuestion sq : sqs2){
+                    %>
+                    <option value="<%=sq.getId()%>"><%=sq.getQuestion()%></option>
+                    <%
+                        }
+                    %>
+                </select>
+            </td>
         </tr>
     </table>
     <table>

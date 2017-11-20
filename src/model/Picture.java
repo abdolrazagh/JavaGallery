@@ -16,6 +16,12 @@ public class Picture {
         this.status = status;
     }
 
+    public Picture(int catId, String address, int status) {
+        this.catId = catId;
+        this.address = address;
+        this.status = status;
+    }
+
     public int getId() {
         return id;
     }

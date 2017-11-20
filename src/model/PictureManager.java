@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class PictureManager {
 
-    public boolean savePicture(Picture pic){
+    public static boolean savePicture(Picture pic){
         PictureDA pictureDA =new PictureDA();
         return pictureDA.insertPicture(pic);
     }
@@ -12,8 +12,12 @@ public class PictureManager {
         PictureDA pictureDA =new PictureDA();
         return pictureDA.selectPictureById(pic_id);
     }
-    public ArrayList<Picture> loadPictureByCatId(int cat_id){
+    public static ArrayList<Picture> loadPictureByCatId(int cat_id){
         PictureDA pictureDA = new PictureDA();
         return pictureDA.selectPictureByCatId(cat_id);
+    }
+    public static boolean removePictureById(int id){
+        PictureDA pictureDA =new PictureDA();
+        return pictureDA.deletePictureById(id);
     }
 }

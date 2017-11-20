@@ -1,6 +1,9 @@
 <%@ page import="model.Category" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="model.CategoryManager" %><%--
+<%@ page import="model.CategoryManager" %>
+<%@ page import="model.PictureManager" %>
+<%@ page import="model.Picture" %>
+<%@ page import="static model.PictureManager.loadPictureByCatId" %><%--
   Created by IntelliJ IDEA.
   User: mabdo
   Date: 11/18/2017
@@ -19,7 +22,15 @@
 
 <main>
     <div class="container">
-        <div class="jumbotron mt-5">
+
+        <%
+            if (request.getAttribute("message") != null ){
+        %>
+            <div class="alert alert-info mt-2"><h6>${requestScope["message"]}</h6></div>
+        <%
+            }
+        %>
+        <div class="jumbotron mt-3">
             <form action="/upload" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="cat">Category</label>
@@ -30,7 +41,7 @@
                         <%
                             for (Category cat : categories) {
                         %>
-                        <option><%=cat.getName()%>
+                        <option value="<%=cat.getId()%>"><%=cat.getName()%>
                         </option>
                         <%
                             }
@@ -44,6 +55,40 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Upload</button>
             </form>
+        </div>
+    </div>
+    <div class="container">
+        <div class="accordion">
+            <%
+                for (Category cat : categories) {
+            %>
+            <div class="card">
+                <div class="card-header text-center">
+                    <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#<%=cat.getName()%>">
+                        <%=cat.getName()%> Pictures
+                    </a>
+                    <div id="<%=cat.getName()%>" class="collapse">
+                        <%
+                            ArrayList<Picture> pictures =  PictureManager.loadPictureByCatId(cat.getId());
+                            for (Picture pic : pictures){
+                        %>
+                            <form action="/RemovePicture" method="post">
+                            <div class="card float-left m-1" style="width: 80px;">
+                                <img class="card-img-top mb-1" src="assets/img/<%=pic.getAddress()%>">
+                                <input type="hidden" name="pic_id" value="<%=pic.getId()%>">
+                                <input type="submit" class="btn btn-danger" value="DELETE">
+                            </div>
+                            </form>
+                        <%
+                            }
+                        %>
+
+                    </div>
+                </div>
+            </div>
+            <%
+                }
+            %>
         </div>
     </div>
 </main>

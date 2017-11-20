@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserDA {
 
@@ -17,7 +18,7 @@ public class UserDA {
             stmt.setInt(1,id);
             ResultSet result = stmt.executeQuery();
             while (result.next()){
-                User user = new User(name, family, password, username, sq1, sq2, ans1, ans2, role);
+                User user = new User();
                 user.setId(result.getInt("USER_ID"));
                 user.setUsername(result.getString("USRNAME"));
                 user.setPassword(result.getString("PASSWORD"));
@@ -36,7 +37,35 @@ public class UserDA {
         }
         return null;
     }
+    public User selectByUserName(String username){
+        DataBase dataBase = new DataBase();
+        Connection c = dataBase.connection;
+        PreparedStatement stmt;
+        String sql = "SELECT * FROM user WHERE `username` = ?";
+        try {
+            stmt = c.prepareStatement(sql);
+            stmt.setString(1,username);
+            ResultSet result = stmt.executeQuery();
+            while (result.next()){
+                User user = new User();
+                user.setId(result.getInt("USER_ID"));
+                user.setUsername(result.getString("USRNAME"));
+                user.setPassword(result.getString("PASSWORD"));
+                user.setName(result.getString("NAME"));
+                user.setFamily(result.getString("FAMILY"));
+                user.setRole(result.getString("role"));
+                user.setSq1(result.getInt("SQ_ID1"));
+                user.setAns1(result.getString("ANS1"));
+                user.setSq2(result.getInt("SQ_ID2"));
+                user.setAns2(result.getString("ANS2"));
+                return user;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
 
+        }
+        return null;
+    }
     public  boolean insertUser(User usr){
         DataBase dataBase = new DataBase();
         Connection c = dataBase.connection;

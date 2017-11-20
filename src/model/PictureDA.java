@@ -32,7 +32,7 @@ public class PictureDA {
         Connection c = dataBase.connection;
         PreparedStatement stmt;
         ArrayList<Picture> pictures = new ArrayList<>();
-        String sql = "SELECT * FROM picture WHERE `cat_id` = ?";
+        String sql = "SELECT * FROM pictures WHERE `cat_id` = ?";
         try {
             stmt = c.prepareStatement(sql);
             stmt.setInt(1, id);
@@ -64,5 +64,21 @@ public class PictureDA {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public boolean deletePictureById  (int id){
+        DataBase dataBase = new DataBase();
+        Connection c = dataBase.connection;
+        PreparedStatement stmt;
+        String sql = "DELETE FROM pictures WHERE `id` = ?";
+        try {
+            stmt = c.prepareStatement(sql);
+            stmt.setInt(1,id);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

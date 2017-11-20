@@ -5,11 +5,28 @@
          version="3.1">
     <servlet>
         <servlet-name>Register</servlet-name>
-        <servlet-class>Controller.Register</servlet-class>
+        <servlet-class>controller.Register</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
-        <url-pattern>/register</url-pattern>
+        <url-pattern>/Register</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>FileUploadHandler</servlet-name>
+        <servlet-class>controller.FileUploadHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FileUploadHandler</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RemovePicture</servlet-name>
+        <servlet-class>controller.DeletePicture</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RemovePicture</servlet-name>
+        <url-pattern>/RemovePicture</url-pattern>
+    </servlet-mapping>
 </web-app>
