@@ -1,5 +1,7 @@
 <%@ page import="model.User" %>
-<%@ page import="java.io.PrintWriter" %><%--
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="model.SequrityQuestionManager" %>
+<%--
   Created by IntelliJ IDEA.
   User: ShahMohammadi
   Date: 11/19/2017
@@ -11,32 +13,37 @@
 <head>
     <title>Title</title>
 </head>
-<body>
-<form name="forgetpass2" action="/ForgetPass2" method="post">
-    <table>
-        <%
+<main>
+    <%
+        SequrityQuestionManager sq = new SequrityQuestionManager();
+        User user = (User) request.getAttribute("user");
+    %>
+    <div class="container">
+        <div class="jumbotron">
+            <form action="/ForgetPass2" method="post">
+                <div class="form-group">
+                    <label for="sq1">Sequrity Question 1</label>
+                    <input type="text" name="sq1" id="sq1" class="disabled"
+                           placeholder="<%=sq.loadOneQuestion(user.getSq1()).getQuestion()%>">
+                </div>
 
-
-            response.getWriter().print();%>
-    </table>
-    <table>
-        <tr>
-            <td>ANSWER1</td>
-            <td><input type="text" name="fans1"></td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <td>ANSWER2</td>
-            <td><input type="text" name="fans2"></td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <td><input type="submit"   name="ok"></td>
-        </tr>
-    </table>
-</form>
-
+                <div class="form-group">
+                    <label for="ans1">ANSWER 1</label>
+                    <input type="text" name="ans1" id="ans1">
+                </div>
+                <div class="form-group">
+                    <label for="sq2">Sequrity Question 2</label>
+                    <input type="text" name="sq2" id="sq2" class="disabled"
+                           placeholder="<%=sq.loadOneQuestion(user.getSq2()).getQuestion()%>">
+                </div>
+                <div class="form-group">
+                    <label for="ans2">ANSWER2</label>
+                    <input type="text" name="ans2" id="ans2">
+                </div>
+                <button type="submit" class="btn btn-primary">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+</main>
 </body>
 </html>

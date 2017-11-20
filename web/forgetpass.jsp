@@ -7,18 +7,26 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Title</title>
+<body>
+
+<title>Forget Password</title>
+<jsp:include page="bootstrap.jsp"></jsp:include>
 </head>
 <body>
-<form name="forgetpass" action="/ForgetPass1" method="post">
-<table>
-    <tr>
-        <td>URERNAME</td>
-        <td><input type="text" name="username2"></td>
-    </tr>
-</table>
-<input type="submit" value="reset">
-</form>
+<jsp:include page="header.jsp"></jsp:include>
+<main>
+    <div class="container">
+        <div class="jumbotron">
+            <form action="/ForgetPass1" method="post">
+            <div class="form-group">
+                <label for="username">UserName</label>
+                <input type="text" name="username" id="username">
+            </div>
+            <button type="submit" class="btn btn-primary">submit</button>
+        </div>
+    </div>
+</main>
+</body>
+
 </body>
 </html>
